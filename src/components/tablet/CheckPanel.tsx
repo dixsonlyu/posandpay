@@ -102,8 +102,8 @@ export const CheckPanel: React.FC<CheckPanelProps> = ({ order, table, onUpdateQu
   return (
     <div className="bg-card flex flex-col h-full">
       {/* Header */}
-      <div className="p-4 border-b border-border">
-        <div className="flex items-center justify-between">
+      <div className="h-[52px] px-4 border-b border-border flex items-center shrink-0">
+        <div className="flex items-center justify-between flex-1">
           <div>
             <h3 className="font-semibold text-foreground text-[13px]">
               {table ? `${t("tables")} ${table.number}` : `${order.serviceMode}`}
