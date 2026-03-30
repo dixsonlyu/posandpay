@@ -14,10 +14,17 @@ const Index: React.FC = () => (
           { to: "/tablet", icon: Monitor, title: "Tablet POS", desc: "Cashier workstation" },
           { to: "/mobile", icon: Smartphone, title: "Mobile POS", desc: "Handheld ordering" },
           { to: "/admin", icon: Settings, title: "Admin", desc: "Merchant portal" },
-        ].map(s => (
-          <Link key={s.to} to={s.to} className="uniweb-card p-6 hover:border-primary/40 hover:shadow-md transition-all group">
-            <div className="w-12 h-12 rounded-[11px] bg-status-blue-light flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/15 transition-colors">
-              <s.icon className="h-6 w-6 text-primary" />
+        ].map((s, i) => (
+          <Link
+            key={s.to}
+            to={s.to}
+            className="uniweb-card surface-glow p-6 transition-all duration-300 group glow-in"
+            style={{ animationDelay: `${i * 80}ms` }}
+          >
+            <div className="w-12 h-12 rounded-[11px] flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-105"
+              style={{ background: "radial-gradient(circle at center, hsl(var(--primary) / 0.1) 0%, transparent 70%)" }}
+            >
+              <s.icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" />
             </div>
             <h2 className="font-semibold text-foreground text-[13px] mb-1">{s.title}</h2>
             <p className="text-xs text-muted-foreground">{s.desc}</p>

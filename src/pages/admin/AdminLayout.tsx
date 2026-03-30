@@ -56,9 +56,9 @@ const AdminLayout: React.FC = () => {
                 key={item.url}
                 to={item.url}
                 end={item.url === "/admin"}
-                className={`flex items-center gap-2.5 px-2.5 py-[9px] rounded-lg text-[13px] font-medium mb-0.5 transition-all ${
+                className={`flex items-center gap-2.5 px-2.5 py-[9px] rounded-lg text-[13px] font-medium mb-0.5 transition-all duration-200 ${
                   active
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary/10 text-primary font-semibold nav-active-glow"
                     : "text-muted-foreground hover:bg-accent hover:text-foreground"
                 }`}
                 activeClassName=""

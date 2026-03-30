@@ -108,9 +108,9 @@ export const MenuComposer: React.FC<MenuComposerProps> = ({ onAddItem, selectedT
             key={cat}
             onClick={() => { setActiveCategory(cat); setSearchQuery(""); }}
             className={cn(
-              "px-3.5 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors",
+              "px-3.5 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-all duration-200",
               activeCategory === cat && !searchQuery
-                ? "bg-primary text-primary-foreground"
+                ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm"
                 : "text-muted-foreground hover:bg-accent"
             )}
           >
@@ -130,9 +130,9 @@ export const MenuComposer: React.FC<MenuComposerProps> = ({ onAddItem, selectedT
                 onClick={() => handleItemClick(item)}
                 disabled={!item.available || !currentOrder}
                 className={cn(
-                  "relative rounded-lg border-1.5 text-left transition-all group overflow-hidden",
+                  "relative rounded-lg border-1.5 text-left transition-all duration-300 ease-out group overflow-hidden",
                   item.available && currentOrder
-                    ? "bg-card border-border hover:border-primary/40 hover:shadow-sm cursor-pointer"
+                    ? "bg-card border-border hover:border-primary/40 hover:shadow-soft cursor-pointer"
                     : "bg-accent border-border/50 opacity-60 cursor-not-allowed"
                 )}
               >
