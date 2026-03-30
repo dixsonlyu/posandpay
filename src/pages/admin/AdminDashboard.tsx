@@ -2,10 +2,10 @@ import React from "react";
 import { TrendingUp, TrendingDown, DollarSign, Users, ShoppingBag, Clock } from "lucide-react";
 
 const stats = [
-  { label: "Today's Revenue", value: "$2,847.50", change: "+12.5%", up: true, icon: DollarSign, stripe: "bg-status-green" },
-  { label: "Total Orders", value: "48", change: "+8", up: true, icon: ShoppingBag, stripe: "bg-primary" },
-  { label: "Unique Customers", value: "92", change: "+15", up: true, icon: Users, stripe: "bg-status-amber" },
-  { label: "Avg Wait Time", value: "12 min", change: "-2 min", up: true, icon: Clock, stripe: "bg-status-red" },
+  { label: "Today's Revenue", value: "$2,847.50", change: "+12.5%", up: true, icon: DollarSign, color: "bg-status-green" },
+  { label: "Total Orders", value: "48", change: "+8", up: true, icon: ShoppingBag, color: "bg-primary" },
+  { label: "Unique Customers", value: "92", change: "+15", up: true, icon: Users, color: "bg-status-amber" },
+  { label: "Avg Wait Time", value: "12 min", change: "-2 min", up: true, icon: Clock, color: "bg-status-red" },
 ];
 
 const recentOrders = [
@@ -25,12 +25,21 @@ const AdminDashboard: React.FC = () => (
 
     {/* KPI Cards */}
     <div className="grid grid-cols-4 gap-4 mb-6">
-      {stats.map(s => (
-        <div key={s.label} className="uniweb-card relative overflow-hidden p-5">
-          <div className={`kpi-stripe ${s.stripe}`} />
-          <div className="section-label mt-1.5 mb-2.5">{s.label}</div>
-          <div className="text-[26px] font-bold text-foreground tracking-tighter leading-none mb-2">{s.value}</div>
-          <div className="flex items-center gap-1.5">
+      {stats.map((s, i) => (
+        <div
+          key={s.label}
+          className="uniweb-card card-glow surface-glow relative overflow-hidden p-5"
+          style={{ animationDelay: `${i * 60}ms` }}
+        >
+          {/* Gradient stripe — fades to transparent */}
+          <div className={`kpi-stripe-gradient ${s.color}`} />
+
+          {/* Subtle radial glow accent */}
+          <div className="section-label mt-1.5 mb-2.5 relative z-[1]">{s.label}</div>
+          <div className="text-[26px] font-bold text-foreground tracking-tighter leading-none mb-2 relative z-[1] glow-in" style={{ animationDelay: `${i * 80 + 100}ms` }}>
+            {s.value}
+          </div>
+          <div className="flex items-center gap-1.5 relative z-[1]">
             {s.up ? (
               <span className="status-badge bg-status-green-light text-status-green">
                 <TrendingUp className="h-3 w-3" />
@@ -49,7 +58,7 @@ const AdminDashboard: React.FC = () => (
     </div>
 
     {/* Recent Orders */}
-    <div className="uniweb-card">
+    <div className="uniweb-card surface-glow">
       <div className="px-6 py-4 border-b border-border flex items-center justify-between">
         <h2 className="text-sm font-semibold text-foreground">Recent Orders</h2>
         <span className="text-[11px] text-muted-foreground">Last 24 hours</span>
@@ -68,7 +77,7 @@ const AdminDashboard: React.FC = () => (
           </thead>
           <tbody>
             {recentOrders.map(o => (
-              <tr key={o.id} className="table-row border-b border-border last:border-0 hover:bg-accent transition-colors cursor-pointer">
+              <tr key={o.id} className="table-row border-b border-border last:border-0 hover:bg-accent/50 transition-all duration-200 cursor-pointer">
                 <td className="font-medium text-foreground font-mono text-xs">{o.id}</td>
                 <td className="text-muted-foreground">{o.table}</td>
                 <td className="text-muted-foreground">{o.items}</td>
@@ -79,7 +88,7 @@ const AdminDashboard: React.FC = () => (
                       ? "bg-status-amber-light text-status-amber"
                       : "bg-status-green-light text-status-green"
                   }`}>
-                    <span className={`status-dot ${o.status === "open" ? "bg-status-amber" : "bg-status-green"}`} />
+                    <span className={`status-dot ${o.status === "open" ? "bg-status-amber" : "bg-status-green"} status-pulse`} />
                     {o.status === "open" ? "Open" : "Settled"}
                   </span>
                 </td>

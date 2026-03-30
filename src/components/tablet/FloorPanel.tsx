@@ -155,7 +155,7 @@ export const FloorPanel: React.FC<FloorPanelProps> = ({
           const cfg = statusConfig[status];
           return (
             <div key={status} className="flex items-center gap-1.5">
-              <span className={cn("w-[7px] h-[7px] rounded-full", cfg.dot)} />
+              <span className={cn("w-[7px] h-[7px] rounded-full status-pulse", cfg.dot)} />
               <span className="text-[10px] text-muted-foreground font-medium">{t(cfg.labelKey)}</span>
             </div>
           );
@@ -220,17 +220,17 @@ export const FloorPanel: React.FC<FloorPanelProps> = ({
                 key={table.id}
                 onClick={() => handleTableClick(table.id)}
                 className={cn(
-                  "relative rounded-xl border-[2px] text-left transition-all p-3 active:scale-95",
+                  "relative rounded-xl border-[2px] text-left transition-all duration-300 ease-out p-3 active:scale-95 surface-glow",
                   cfg.bg, cfg.border,
-                  isSelected && "ring-2 ring-primary ring-offset-1",
-                  isMergeTarget && "ring-2 ring-primary ring-offset-1 bg-primary/10",
+                  isSelected && "gradient-ring border-primary/30",
+                  isMergeTarget && "gradient-ring bg-primary/10",
                   tableAction === "transfer" && table.status !== "available" && table.id !== selectedTableId && "opacity-40 pointer-events-none"
                 )}
               >
                 {/* Row 1: Table number + status dot */}
                 <div className="flex items-start justify-between mb-2">
                   <span className="font-bold text-foreground text-[16px] leading-none">#{table.number}</span>
-                  <span className={cn("w-[10px] h-[10px] rounded-full flex-shrink-0 mt-0.5", cfg.dot)} />
+                  <span className={cn("w-[10px] h-[10px] rounded-full flex-shrink-0 mt-0.5 status-pulse", cfg.dot)} />
                 </div>
 
                 {/* Row 2: Seats */}
