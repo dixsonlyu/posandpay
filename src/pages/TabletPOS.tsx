@@ -267,7 +267,7 @@ const TabletPOS: React.FC = () => {
 
   const paymentMethods = ["Visa", "Mastercard", "UnionPay", "Alipay", "WeChat Pay", "PayNow", "Cash"];
 
-  const handlePaymentComplete = useCallback((method?: string, cashReceived?: number) => {
+  const handlePaymentComplete = useCallback(async (method?: string, cashReceived?: number) => {
     if (currentOrder) {
       const isCash = method === "Cash";
       const changeDue = isCash && cashReceived ? cashReceived - currentOrder.total : undefined;
@@ -291,6 +291,9 @@ const TabletPOS: React.FC = () => {
         changeDue,
       };
       setPaidOrders(prev => [paid, ...prev]);
+
+      // Persist payment to DB
+      await updateOrderStatus(currentOrder.id, "paid");
     }
     setShowPayment(false);
     if (currentOrder?.tableId) {
