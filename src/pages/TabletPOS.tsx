@@ -139,6 +139,12 @@ const TabletPOS: React.FC = () => {
       setTables(prev => prev.map(t =>
         t.id === tableId ? { ...t, status: "ordering" as const, guestCount: 1, orderId: newOrder.id, elapsedMinutes: 0 } : t
       ));
+      // Persist to DB
+      insertOrder({
+        id: newOrder.id, table_id: tableId, table_number: table.number,
+        service_mode: "dine-in", status: "open", guest_count: 1,
+        subtotal: 0, service_charge: 0, gst: 0, total: 0,
+      });
     } else if (table?.status === "reserved") {
       // Reserved table selected — don't create order yet, just select
       setCurrentOrder(null);
