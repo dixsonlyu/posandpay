@@ -11,6 +11,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useLanguage } from "@/hooks/useLanguage";
 import { getMenuItemsSnapshot } from "@/state/menu-store";
 import { cn } from "@/lib/utils";
+import { insertOrder, insertOrderItems, updateOrderStatus, updateOrderTotals } from "@/lib/db-orders";
 
 // Generate 30 mock historical orders for demo
 const generateMockHistory = (): PaidOrder[] => {
