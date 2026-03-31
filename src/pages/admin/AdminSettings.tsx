@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Building2, CreditCard, Globe, Bell, QrCode, Monitor } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSettings, updateSettings, type QRPaymentMode } from "@/state/settings-store";
+import { Switch } from "@/components/ui/switch";
 
 const AdminSettings: React.FC = () => {
   const settings = useSettings();
