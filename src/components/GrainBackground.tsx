@@ -12,7 +12,7 @@ const blobs = [
 
 const GrainBackground: React.FC = () => (
   <div
-    className="fixed inset-0 -z-10 overflow-hidden"
+    className="absolute inset-0 -z-10 overflow-hidden"
     aria-hidden="true"
     style={{ pointerEvents: "none" }}
   >

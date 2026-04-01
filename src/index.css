@@ -138,7 +138,7 @@
 
   body {
     @apply text-foreground font-sans antialiased;
-    background: transparent;
+    background: hsl(var(--background));
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     font-size: 14px;
     letter-spacing: -0.006em;

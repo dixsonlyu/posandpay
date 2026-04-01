@@ -121,7 +121,7 @@ const QROrdering: React.FC = () => {
   const showPayNow = settings.qrPaymentMode === "pre-pay" || settings.qrPaymentMode === "choice";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {screen === "table" && <QRTableSelect initialTable={initialTable} onConfirm={handleTableConfirm} />}
       {screen === "auth" && <QRMemberAuth onAuth={handleAuth} />}
       {screen === "menu" && <QRMenuBrowser cart={cart} onAddToCart={handleAddToCart} onViewCart={() => setScreen("cart")} />}
