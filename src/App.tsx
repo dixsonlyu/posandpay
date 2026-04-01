@@ -25,6 +25,7 @@ import QueueKiosk from "./pages/QueueKiosk";
 import KioskOrdering from "./pages/KioskOrdering";
 import QROrdering from "./pages/QROrdering";
 import NotFound from "./pages/NotFound";
+import GrainBackground from "./components/GrainBackground";
 
 const queryClient = new QueryClient();
 
