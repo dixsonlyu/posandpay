@@ -27,7 +27,7 @@ const AdminLayout: React.FC = () => {
   const location = useLocation();
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen">
       {/* Sidebar — light surface */}
       <aside className="w-[236px] bg-card border-r border-border flex flex-col shrink-0">
         {/* Brand */}
