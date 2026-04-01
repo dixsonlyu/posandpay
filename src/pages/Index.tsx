@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Monitor, Smartphone, Settings, MonitorSmartphone, QrCode } from "lucide-react";
 import uniwebLogo from "@/assets/uniweb-logo.jpg";
+import GrainBackground from "@/components/GrainBackground";
 
 const Index: React.FC = () => (
-  <div className="min-h-screen flex items-center justify-center p-6">
-    <div className="max-w-2xl w-full text-center">
+  <div className="min-h-screen flex items-center justify-center p-6 relative">
+    <GrainBackground />
+    <div className="max-w-2xl w-full text-center relative z-10">
       <img src={uniwebLogo} alt="Uniweb" className="w-16 h-16 rounded-2xl mx-auto mb-5" />
       <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Uniweb Smart POS</h1>
       <p className="text-[13px] text-muted-foreground mb-10">Select a surface to explore</p>
