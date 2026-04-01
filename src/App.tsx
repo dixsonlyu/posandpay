@@ -36,6 +36,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <GrainBackground />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
