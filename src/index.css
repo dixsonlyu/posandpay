@@ -137,7 +137,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
+    background: transparent;
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     font-size: 14px;
     letter-spacing: -0.006em;
