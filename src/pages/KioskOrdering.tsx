@@ -97,7 +97,7 @@ const KioskOrdering: React.FC = () => {
   const total = Math.round((subtotal + sc + gst) * 100) / 100;
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-background">
+    <div className="h-screen w-screen overflow-hidden">
       {screen === "welcome" && <KioskWelcome onStart={handleStart} />}
       {screen === "menu" && (
         <>
