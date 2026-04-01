@@ -366,7 +366,7 @@ const TabletPOS: React.FC = () => {
   const showCheckPanel = !showHistory;
 
   return (
-    <div ref={containerRef} className="flex h-screen bg-background overflow-hidden relative">
+    <div ref={containerRef} className="flex h-screen overflow-hidden relative">
       {/* Floor Panel with drag handle */}
       {tableManagement && !floorFullscreen && (
         <>
