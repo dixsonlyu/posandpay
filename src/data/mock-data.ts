@@ -95,6 +95,8 @@ export interface Order {
   gst: number;
   total: number;
   customerId?: string;
+  serveTogether?: boolean;
+  paymentCaptured?: boolean;
 }
 
 export interface Customer {
