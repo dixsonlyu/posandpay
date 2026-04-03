@@ -24,6 +24,7 @@ import AdminQueue from "./pages/admin/AdminQueue";
 import QueueKiosk from "./pages/QueueKiosk";
 import KioskOrdering from "./pages/KioskOrdering";
 import QROrdering from "./pages/QROrdering";
+import KDSPage from "./pages/KDSPage";
 import NotFound from "./pages/NotFound";
 
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { Building2, CreditCard, Globe, Bell, QrCode, Monitor } from "lucide-react";
+import { Building2, CreditCard, Globe, Bell, QrCode, Monitor, Utensils, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useSettings, updateSettings, type QRPaymentMode } from "@/state/settings-store";
+import { useSettings, updateSettings, type QRPaymentMode, type POSMode } from "@/state/settings-store";
 import { Switch } from "@/components/ui/switch";
 
 const AdminSettings: React.FC = () => {
@@ -47,6 +47,38 @@ const AdminSettings: React.FC = () => {
             </span>
           </button>
         ))}
+      </div>
+
+      {/* POS Workflow Mode */}
+      <div className="uniweb-card surface-glow p-6 mb-6">
+        <h2 className="text-sm font-semibold text-foreground mb-4">POS Workflow Mode</h2>
+        <div className="flex items-start gap-4">
+          <div className="w-11 h-11 rounded-[11px] bg-status-green-light flex items-center justify-center shrink-0">
+            <Utensils className="h-5 w-5 text-status-green" />
+          </div>
+          <div className="flex-1">
+            <p className="text-[11px] text-muted-foreground mb-3">Controls the order lifecycle: when payment happens relative to kitchen firing</p>
+            <div className="flex gap-2">
+              {([
+                { key: "fast-food" as POSMode, label: "Fast Food", icon: Zap, desc: "Pay → Fire → Pickup" },
+                { key: "restaurant" as POSMode, label: "Restaurant", icon: Utensils, desc: "Fire → Serve → Pay" },
+              ]).map(m => (
+                <button key={m.key}
+                  onClick={() => updateSettings({ posMode: m.key })}
+                  className={cn("flex-1 p-3 rounded-lg border-2 text-left transition-all",
+                    settings.posMode === m.key
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/30")}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <m.icon className={cn("h-4 w-4", settings.posMode === m.key ? "text-primary" : "text-muted-foreground")} />
+                    <span className={cn("text-[13px] font-semibold", settings.posMode === m.key ? "text-foreground" : "text-muted-foreground")}>{m.label}</span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground">{m.desc}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Ordering Channels */}
