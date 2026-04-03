@@ -1,8 +1,10 @@
 import { useSyncExternalStore } from "react";
 
 export type QRPaymentMode = "pre-pay" | "post-pay" | "choice";
+export type POSMode = "fast-food" | "restaurant";
 
 export interface MerchantSettings {
+  posMode: POSMode;
   qrEnabled: boolean;
   qrPaymentMode: QRPaymentMode;
   kioskEnabled: boolean;
@@ -12,6 +14,7 @@ export interface MerchantSettings {
 type Listener = () => void;
 
 let state: MerchantSettings = {
+  posMode: "restaurant",
   qrEnabled: true,
   qrPaymentMode: "choice",
   kioskEnabled: true,

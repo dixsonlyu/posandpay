@@ -16,8 +16,13 @@ export interface Table {
   openAmount?: number;
   elapsedMinutes?: number;
   orderId?: string;
-  mergedWith?: string[]; // IDs of tables merged with this one
+  mergedWith?: string[];
   reservationName?: string;
+  reservationPhone?: string;
+  reservationAt?: string;
+  reservationNotes?: string;
+  linkedCustomerId?: string;
+  linkedCustomerName?: string;
 }
 
 export interface MenuItem {
@@ -90,6 +95,8 @@ export interface Order {
   gst: number;
   total: number;
   customerId?: string;
+  serveTogether?: boolean;
+  paymentCaptured?: boolean;
 }
 
 export interface Customer {

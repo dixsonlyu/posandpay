@@ -24,6 +24,7 @@ import AdminQueue from "./pages/admin/AdminQueue";
 import QueueKiosk from "./pages/QueueKiosk";
 import KioskOrdering from "./pages/KioskOrdering";
 import QROrdering from "./pages/QROrdering";
+import KDSPage from "./pages/KDSPage";
 import NotFound from "./pages/NotFound";
 
 
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/queue" element={<QueueKiosk />} />
               <Route path="/kiosk" element={<KioskOrdering />} />
               <Route path="/qr" element={<QROrdering />} />
+              <Route path="/kds" element={<KDSPage />} />
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="menu" element={<AdminMenu />} />

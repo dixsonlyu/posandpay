@@ -54,6 +54,8 @@ export const QRMemberAuth: React.FC<Props> = ({ onAuth }) => {
       tier: "bronze",
       totalSpend: 0,
       averageTicket: 0,
+      storedBalance: 0,
+      totalTopUp: 0,
       preferredItems: [],
       lastVisit: new Date().toISOString().slice(0, 10),
       createdAt: new Date().toISOString().slice(0, 10),

@@ -15,6 +15,8 @@ export interface CustomerFull {
   tier: "bronze" | "silver" | "gold" | "platinum";
   totalSpend: number;
   averageTicket: number;
+  storedBalance: number;
+  totalTopUp: number;
   preferredItems: string[];
   notes?: string;
   lastVisit: string;
@@ -34,12 +36,12 @@ const classifySegment = (c: { visits: number; lastVisit: string; totalSpend: num
 };
 
 const initialCustomers: CustomerFull[] = [
-  { id: "c1", name: "Tan Wei Ming", phone: "+65 9123 4567", email: "weiming@email.com", dateOfBirth: "1985-06-15", tags: ["regular", "spicy-lover"], visits: 24, points: 1250, tier: "gold", totalSpend: 1680.50, averageTicket: 70.02, preferredItems: ["Laksa", "Chilli Crab"], notes: "Prefers table by window", lastVisit: "2026-03-28", createdAt: "2025-03-10", segment: "vip" },
-  { id: "c2", name: "Sarah Lim", phone: "+65 8234 5678", tags: ["lunch-regular"], visits: 8, points: 420, tier: "silver", totalSpend: 380.00, averageTicket: 47.50, preferredItems: ["Chicken Rice", "Teh Tarik"], lastVisit: "2026-03-25", createdAt: "2025-09-20", segment: "regular" },
-  { id: "c3", name: "Ahmad bin Hassan", phone: "+65 9345 6789", dateOfBirth: "1990-04-02", tags: ["halal"], visits: 3, points: 150, tier: "bronze", totalSpend: 95.00, averageTicket: 31.67, preferredItems: ["Nasi Lemak"], lastVisit: "2026-03-10", createdAt: "2026-02-01", segment: "new" },
-  { id: "c4", name: "Priya Sharma", phone: "+65 8456 7890", email: "priya@email.com", dateOfBirth: "1978-12-25", tags: ["vip", "vegetarian-options"], visits: 45, points: 3200, tier: "platinum", totalSpend: 4250.80, averageTicket: 94.46, preferredItems: ["Curry Fish Head", "Kangkong"], notes: "Birthday coming up in Dec", lastVisit: "2026-03-29", createdAt: "2024-06-15", segment: "vip" },
-  { id: "c5", name: "Jason Ng", phone: "+65 9876 5432", email: "jason.ng@corp.com", tags: ["corporate"], visits: 12, points: 680, tier: "silver", totalSpend: 720.00, averageTicket: 60.00, preferredItems: ["Bak Kut Teh", "Tiger Beer"], lastVisit: "2026-01-15", createdAt: "2025-05-10", segment: "at_risk" },
-  { id: "c6", name: "Linda Koh", phone: "+65 8765 4321", tags: [], visits: 1, points: 50, tier: "bronze", totalSpend: 42.50, averageTicket: 42.50, preferredItems: [], lastVisit: "2025-11-20", createdAt: "2025-11-20", segment: "churned" },
+  { id: "c1", name: "Tan Wei Ming", phone: "+65 9123 4567", email: "weiming@email.com", dateOfBirth: "1985-06-15", tags: ["regular", "spicy-lover"], visits: 24, points: 1250, tier: "gold", totalSpend: 1680.50, averageTicket: 70.02, storedBalance: 120.00, totalTopUp: 300.00, preferredItems: ["Laksa", "Chilli Crab"], notes: "Prefers table by window", lastVisit: "2026-03-28", createdAt: "2025-03-10", segment: "vip" },
+  { id: "c2", name: "Sarah Lim", phone: "+65 8234 5678", tags: ["lunch-regular"], visits: 8, points: 420, tier: "silver", totalSpend: 380.00, averageTicket: 47.50, storedBalance: 0, totalTopUp: 0, preferredItems: ["Chicken Rice", "Teh Tarik"], lastVisit: "2026-03-25", createdAt: "2025-09-20", segment: "regular" },
+  { id: "c3", name: "Ahmad bin Hassan", phone: "+65 9345 6789", dateOfBirth: "1990-04-02", tags: ["halal"], visits: 3, points: 150, tier: "bronze", totalSpend: 95.00, averageTicket: 31.67, storedBalance: 50.00, totalTopUp: 50.00, preferredItems: ["Nasi Lemak"], lastVisit: "2026-03-10", createdAt: "2026-02-01", segment: "new" },
+  { id: "c4", name: "Priya Sharma", phone: "+65 8456 7890", email: "priya@email.com", dateOfBirth: "1978-12-25", tags: ["vip", "vegetarian-options"], visits: 45, points: 3200, tier: "platinum", totalSpend: 4250.80, averageTicket: 94.46, storedBalance: 500.00, totalTopUp: 1200.00, preferredItems: ["Curry Fish Head", "Kangkong"], notes: "Birthday coming up in Dec", lastVisit: "2026-03-29", createdAt: "2024-06-15", segment: "vip" },
+  { id: "c5", name: "Jason Ng", phone: "+65 9876 5432", email: "jason.ng@corp.com", tags: ["corporate"], visits: 12, points: 680, tier: "silver", totalSpend: 720.00, averageTicket: 60.00, storedBalance: 0, totalTopUp: 0, preferredItems: ["Bak Kut Teh", "Tiger Beer"], lastVisit: "2026-01-15", createdAt: "2025-05-10", segment: "at_risk" },
+  { id: "c6", name: "Linda Koh", phone: "+65 8765 4321", tags: [], visits: 1, points: 50, tier: "bronze", totalSpend: 42.50, averageTicket: 42.50, storedBalance: 0, totalTopUp: 0, preferredItems: [], lastVisit: "2025-11-20", createdAt: "2025-11-20", segment: "churned" },
 ];
 
 let customersState = initialCustomers.map(c => ({ ...c, segment: classifySegment(c) }));
@@ -80,6 +82,8 @@ export const registerCustomer = (phone: string, email?: string, nickname?: strin
     tier: "bronze",
     totalSpend: 0,
     averageTicket: 0,
+    storedBalance: 0,
+    totalTopUp: 0,
     preferredItems: [],
     lastVisit: new Date().toISOString().slice(0, 10),
     createdAt: new Date().toISOString().slice(0, 10),
@@ -92,5 +96,27 @@ export const registerCustomer = (phone: string, email?: string, nickname?: strin
 export const addPoints = (customerId: string, amount: number) => {
   const points = Math.floor(amount);
   customersState = customersState.map(c => c.id === customerId ? { ...c, points: c.points + points } : c);
+  emit();
+};
+
+export const topUpBalance = (customerId: string, amount: number, bonusPct: number = 0) => {
+  const bonus = Math.round(amount * bonusPct) / 100;
+  const total = amount + bonus;
+  customersState = customersState.map(c => {
+    if (c.id !== customerId) return c;
+    return {
+      ...c,
+      storedBalance: Math.round((c.storedBalance + total) * 100) / 100,
+      totalTopUp: Math.round((c.totalTopUp + amount) * 100) / 100,
+    };
+  });
+  emit();
+};
+
+export const deductBalance = (customerId: string, amount: number) => {
+  customersState = customersState.map(c => {
+    if (c.id !== customerId) return c;
+    return { ...c, storedBalance: Math.max(0, Math.round((c.storedBalance - amount) * 100) / 100) };
+  });
   emit();
 };
