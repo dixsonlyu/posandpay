@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Monitor, Smartphone, Settings, MonitorSmartphone, QrCode } from "lucide-react";
+import { Monitor, Smartphone, Settings, MonitorSmartphone, QrCode, ChefHat } from "lucide-react";
 import uniwebLogo from "@/assets/uniweb-logo.jpg";
 import GrainBackground from "@/components/GrainBackground";
 
