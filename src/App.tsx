@@ -46,6 +46,7 @@ const App = () => (
               <Route path="/queue" element={<QueueKiosk />} />
               <Route path="/kiosk" element={<KioskOrdering />} />
               <Route path="/qr" element={<QROrdering />} />
+              <Route path="/kds" element={<KDSPage />} />
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="menu" element={<AdminMenu />} />

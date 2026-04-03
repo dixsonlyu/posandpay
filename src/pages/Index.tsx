@@ -7,16 +7,17 @@ import GrainBackground from "@/components/GrainBackground";
 const Index: React.FC = () => (
   <div className="min-h-screen flex items-center justify-center p-6 relative">
     <GrainBackground />
-    <div className="max-w-2xl w-full text-center relative z-10">
+    <div className="max-w-3xl w-full text-center relative z-10">
       <img src={uniwebLogo} alt="Uniweb" className="w-16 h-16 rounded-2xl mx-auto mb-5" />
       <h1 className="text-2xl font-bold text-foreground tracking-tight mb-1">Uniweb Smart POS</h1>
       <p className="text-[13px] text-muted-foreground mb-10">Select a surface to explore</p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {[
           { to: "/tablet", icon: Monitor, title: "Tablet POS", desc: "Cashier workstation" },
           { to: "/mobile", icon: Smartphone, title: "Mobile POS", desc: "Handheld ordering" },
           { to: "/kiosk", icon: MonitorSmartphone, title: "Kiosk", desc: "Self-service ordering" },
           { to: "/qr", icon: QrCode, title: "QR Order", desc: "Scan-to-order" },
+          { to: "/kds", icon: ChefHat, title: "KDS", desc: "Kitchen display" },
           { to: "/admin", icon: Settings, title: "Admin", desc: "Merchant portal" },
         ].map((s, i) => (
           <Link
