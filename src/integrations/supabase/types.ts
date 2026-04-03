@@ -84,38 +84,65 @@ export type Database = {
       }
       customers: {
         Row: {
+          address: string | null
+          average_ticket: number
           created_at: string
+          date_of_birth: string | null
           email: string | null
           id: string
           last_visit: string | null
           name: string
+          notes: string | null
           phone: string
           points: number
+          preferred_items: string[] | null
+          stored_balance: number
+          tags: string[] | null
           tier: Database["public"]["Enums"]["customer_tier"]
+          total_spend: number
+          total_top_up: number
           updated_at: string
           visits: number
         }
         Insert: {
+          address?: string | null
+          average_ticket?: number
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
           id: string
           last_visit?: string | null
           name: string
+          notes?: string | null
           phone: string
           points?: number
+          preferred_items?: string[] | null
+          stored_balance?: number
+          tags?: string[] | null
           tier?: Database["public"]["Enums"]["customer_tier"]
+          total_spend?: number
+          total_top_up?: number
           updated_at?: string
           visits?: number
         }
         Update: {
+          address?: string | null
+          average_ticket?: number
           created_at?: string
+          date_of_birth?: string | null
           email?: string | null
           id?: string
           last_visit?: string | null
           name?: string
+          notes?: string | null
           phone?: string
           points?: number
+          preferred_items?: string[] | null
+          stored_balance?: number
+          tags?: string[] | null
           tier?: Database["public"]["Enums"]["customer_tier"]
+          total_spend?: number
+          total_top_up?: number
           updated_at?: string
           visits?: number
         }
@@ -168,6 +195,81 @@ export type Database = {
           sku?: string | null
           supplier?: string | null
           unit?: Database["public"]["Enums"]["inventory_unit"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      member_wallet_transactions: {
+        Row: {
+          amount: number
+          balance_after: number
+          created_at: string
+          customer_id: string
+          id: string
+          notes: string | null
+          reference_id: string | null
+          type: string
+        }
+        Insert: {
+          amount: number
+          balance_after?: number
+          created_at?: string
+          customer_id: string
+          id?: string
+          notes?: string | null
+          reference_id?: string | null
+          type: string
+        }
+        Update: {
+          amount?: number
+          balance_after?: number
+          created_at?: string
+          customer_id?: string
+          id?: string
+          notes?: string | null
+          reference_id?: string | null
+          type?: string
+        }
+        Relationships: []
+      }
+      membership_tiers: {
+        Row: {
+          created_at: string
+          discount_pct: number
+          id: string
+          min_spend: number
+          min_visits: number
+          name: string
+          name_zh: string | null
+          perks: string[] | null
+          sort_order: number
+          top_up_bonus_pct: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          discount_pct?: number
+          id: string
+          min_spend?: number
+          min_visits?: number
+          name: string
+          name_zh?: string | null
+          perks?: string[] | null
+          sort_order?: number
+          top_up_bonus_pct?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          discount_pct?: number
+          id?: string
+          min_spend?: number
+          min_visits?: number
+          name?: string
+          name_zh?: string | null
+          perks?: string[] | null
+          sort_order?: number
+          top_up_bonus_pct?: number
           updated_at?: string
         }
         Relationships: []
@@ -436,6 +538,7 @@ export type Database = {
           gst: number
           guest_count: number
           id: string
+          serve_together: boolean
           service_charge: number
           service_mode: Database["public"]["Enums"]["service_mode"]
           status: Database["public"]["Enums"]["order_status"]
@@ -451,6 +554,7 @@ export type Database = {
           gst?: number
           guest_count?: number
           id: string
+          serve_together?: boolean
           service_charge?: number
           service_mode?: Database["public"]["Enums"]["service_mode"]
           status?: Database["public"]["Enums"]["order_status"]
@@ -466,6 +570,7 @@ export type Database = {
           gst?: number
           guest_count?: number
           id?: string
+          serve_together?: boolean
           service_charge?: number
           service_mode?: Database["public"]["Enums"]["service_mode"]
           status?: Database["public"]["Enums"]["order_status"]
@@ -615,11 +720,16 @@ export type Database = {
           elapsed_minutes: number | null
           guest_count: number | null
           id: string
+          linked_customer_id: string | null
+          linked_customer_name: string | null
           merged_with: string[] | null
           number: string
           open_amount: number | null
           order_id: string | null
+          reservation_at: string | null
           reservation_name: string | null
+          reservation_notes: string | null
+          reservation_phone: string | null
           seats: number
           server: string | null
           status: Database["public"]["Enums"]["table_status"]
@@ -631,11 +741,16 @@ export type Database = {
           elapsed_minutes?: number | null
           guest_count?: number | null
           id: string
+          linked_customer_id?: string | null
+          linked_customer_name?: string | null
           merged_with?: string[] | null
           number: string
           open_amount?: number | null
           order_id?: string | null
+          reservation_at?: string | null
           reservation_name?: string | null
+          reservation_notes?: string | null
+          reservation_phone?: string | null
           seats?: number
           server?: string | null
           status?: Database["public"]["Enums"]["table_status"]
@@ -647,11 +762,16 @@ export type Database = {
           elapsed_minutes?: number | null
           guest_count?: number | null
           id?: string
+          linked_customer_id?: string | null
+          linked_customer_name?: string | null
           merged_with?: string[] | null
           number?: string
           open_amount?: number | null
           order_id?: string | null
+          reservation_at?: string | null
           reservation_name?: string | null
+          reservation_notes?: string | null
+          reservation_phone?: string | null
           seats?: number
           server?: string | null
           status?: Database["public"]["Enums"]["table_status"]
